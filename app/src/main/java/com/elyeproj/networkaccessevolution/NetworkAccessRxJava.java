@@ -3,11 +3,9 @@ package com.elyeproj.networkaccessevolution;
 import java.util.concurrent.Callable;
 
 import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class NetworkAccessRxJava implements NetworkAccess {
@@ -29,16 +27,10 @@ public class NetworkAccessRxJava implements NetworkAccess {
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<String>() {
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void onSuccess(String result) {
-                        view.updateScreen(result);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
+                    public void accept(String s) throws Exception {
+                        view.updateScreen(s);
                     }
                 });
     }
