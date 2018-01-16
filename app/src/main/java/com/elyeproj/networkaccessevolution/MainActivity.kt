@@ -12,9 +12,10 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private val networkAccessDirect = NetworkAccessDirect(this)
     private val networkAccessThread = NetworkAccessThread(this)
-    private val networkAccessAsynch = NetworkAccessAsync(this)
+    private val networkAccessAsync = NetworkAccessAsync(this)
     private val networkAccessIntentService = NetworkAccessIntentService(this)
     private val networkAccessRxJava = NetworkAccessRxJava(this)
+    private val networkAccessRxJavaKotlin = NetworkAccessRxJavaKotlin(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +54,12 @@ class MainActivity : AppCompatActivity(), MainView {
             }
         }
 
+        btn_search_rxjava_kotlin.setOnClickListener {
+            if (edit_search.text.toString().isNotEmpty()) {
+                beginSearchRxJavaKotlin(edit_search.text.toString())
+            }
+        }
+
     }
 
     private fun beginSearchDirect(queryString: String) {
@@ -64,7 +71,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     private fun beginSearchAsync(queryString: String) {
-        networkAccessAsynch.fetchData(queryString)
+        networkAccessAsync.fetchData(queryString)
     }
 
     private fun beginSearchIntentService(queryString: String) {
@@ -75,11 +82,15 @@ class MainActivity : AppCompatActivity(), MainView {
         networkAccessRxJava.fetchData(queryString)
     }
 
+    private fun beginSearchRxJavaKotlin(queryString: String) {
+        networkAccessRxJavaKotlin.fetchData(queryString)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         networkAccessDirect.terminate()
         networkAccessThread.terminate()
-        networkAccessAsynch.terminate()
+        networkAccessAsync.terminate()
         networkAccessIntentService.terminate()
         networkAccessRxJava.terminate()
     }

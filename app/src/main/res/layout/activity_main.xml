@@ -49,4 +49,10 @@
         android:layout_height="wrap_content"
         android:text="@string/button_search_rxjava" />
 
+    <Button
+        android:id="@+id/btn_search_rxjava_kotlin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_search_rxjava_kotlin" />
+
 </LinearLayout>
