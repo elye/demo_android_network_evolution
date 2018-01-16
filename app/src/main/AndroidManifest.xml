@@ -18,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".NetworkIntentService"
+            android:label="Network Access Intent Service"
+            >
+        </service>
     </application>
 
 </manifest>
