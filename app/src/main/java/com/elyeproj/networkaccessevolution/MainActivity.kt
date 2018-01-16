@@ -25,41 +25,35 @@ class MainActivity : AppCompatActivity(), MainView {
         networkAccessIntentService.registerReceiver()
 
         btn_search_direct.setOnClickListener {
-            if (edit_search.text.toString().isNotEmpty()) {
-                beginSearchDirect(edit_search.text.toString())
-            }
+            beginSearch(::beginSearchDirect)
         }
 
         btn_search_thread.setOnClickListener {
-            if (edit_search.text.toString().isNotEmpty()) {
-                beginSearchThread(edit_search.text.toString())
-            }
+            beginSearch(::beginSearchThread)
         }
 
         btn_search_async.setOnClickListener {
-            if (edit_search.text.toString().isNotEmpty()) {
-                beginSearchAsync(edit_search.text.toString())
-            }
+            beginSearch(::beginSearchAsync)
         }
 
         btn_search_intent_service.setOnClickListener {
-            if (edit_search.text.toString().isNotEmpty()) {
-                beginSearchIntentService(edit_search.text.toString())
-            }
+            beginSearch(::beginSearchIntentService)
         }
 
         btn_search_rxjava.setOnClickListener {
-            if (edit_search.text.toString().isNotEmpty()) {
-                beginSearchRxJava(edit_search.text.toString())
-            }
+            beginSearch(::beginSearchRxJava)
         }
 
         btn_search_rxjava_kotlin.setOnClickListener {
-            if (edit_search.text.toString().isNotEmpty()) {
-                beginSearchRxJavaKotlin(edit_search.text.toString())
-            }
+            beginSearch(::beginSearchRxJavaKotlin)
         }
 
+    }
+
+    private fun beginSearch(searchFunc : (query: String) -> Unit) {
+        if (edit_search.text.toString().isNotEmpty()) {
+            searchFunc(edit_search.text.toString())
+        }
     }
 
     private fun beginSearchDirect(queryString: String) {
