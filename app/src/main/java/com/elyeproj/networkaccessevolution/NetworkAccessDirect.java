@@ -22,7 +22,7 @@ public class NetworkAccessDirect implements NetworkAccess {
 
         // Direct access Network
         String result = Network.fetchHttp(searchText);
-        view.updateData(result);
+        view.updateScreen(result);
 
         // Special to allow Network run on UI Thread
         StrictMode.setThreadPolicy(originalTreatPolicy);

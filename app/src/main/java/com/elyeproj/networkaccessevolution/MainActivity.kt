@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity(), MainView {
     private val networkAccessThread = NetworkAccessThread(this)
     private val networkAccessAsynch = NetworkAccessAsync(this)
     private val networkAccessIntentService = NetworkAccessIntentService(this)
+    private val networkAccessRxJava = NetworkAccessRxJava(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,12 @@ class MainActivity : AppCompatActivity(), MainView {
             }
         }
 
+        btn_search_rxjava.setOnClickListener {
+            if (edit_search.text.toString().isNotEmpty()) {
+                beginSearchRxJava(edit_search.text.toString())
+            }
+        }
+
     }
 
     private fun beginSearchDirect(queryString: String) {
@@ -64,15 +71,20 @@ class MainActivity : AppCompatActivity(), MainView {
         networkAccessIntentService.fetchData(queryString)
     }
 
+    private fun beginSearchRxJava(queryString: String) {
+        networkAccessRxJava.fetchData(queryString)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         networkAccessDirect.terminate()
         networkAccessThread.terminate()
         networkAccessAsynch.terminate()
         networkAccessIntentService.terminate()
+        networkAccessRxJava.terminate()
     }
 
-    override fun updateData(result: String) {
+    override fun updateScreen(result: String) {
         txt_search_result.text = result
     }
 

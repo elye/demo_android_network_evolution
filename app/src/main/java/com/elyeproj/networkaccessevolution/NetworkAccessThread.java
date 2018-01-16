@@ -23,7 +23,7 @@ public class NetworkAccessThread implements NetworkAccess {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        view.updateData(result);
+                        view.updateScreen(result);
                     }
                 });
             }

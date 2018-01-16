@@ -28,7 +28,7 @@ public class NetworkAccessAsync implements NetworkAccess  {
         @Override
         protected void onPostExecute(String result) {
             if (view.get() != null) {
-                view.get().updateData(result);
+                view.get().updateScreen(result);
             }
         }
     }

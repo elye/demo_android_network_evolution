@@ -43,7 +43,7 @@ public class NetworkAccessIntentService implements NetworkAccess {
     class IntentReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            NetworkAccessIntentService.this.view.updateData(intent.getStringExtra(PARAM_OUT_MSG));
+            NetworkAccessIntentService.this.view.updateScreen(intent.getStringExtra(PARAM_OUT_MSG));
         }
     }
 }

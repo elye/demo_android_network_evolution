@@ -5,4 +5,5 @@
     <string name="button_search_thread">Thread Based Search</string>
     <string name="button_search_async">Async Based Search</string>
     <string name="button_search_intent_service">Intent Service Based Search</string>
+    <string name="button_search_rxjava">RxJava based search</string>
 </resources>
