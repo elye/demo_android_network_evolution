@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity(), MainView {
         btn_search_rxjava_kotlin.setOnClickListener {
             beginSearch(::beginSearchRxJavaKotlin)
         }
-
     }
 
     private fun beginSearch(searchFunc : (query: String) -> Unit) {
@@ -87,6 +86,7 @@ class MainActivity : AppCompatActivity(), MainView {
         networkAccessAsync.terminate()
         networkAccessIntentService.terminate()
         networkAccessRxJava.terminate()
+        networkAccessRxJavaKotlin.terminate()
     }
 
     override fun updateScreen(result: String) {
