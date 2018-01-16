@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Network Access Evolution</string>
+    <string name="hint_search_string">Enter Search Text</string>
+    <string name="button_search_direct">Direct Based Search</string>
+    <string name="button_search_thread">Thread Based Search</string>
+    <string name="button_search_async">Async Based Search</string>
+</resources>
