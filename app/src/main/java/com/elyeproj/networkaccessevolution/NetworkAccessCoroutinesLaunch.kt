@@ -5,16 +5,16 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
 
-class NetworkAccessCoroutines(private val view: MainView) : NetworkAccess {
+class NetworkAccessCoroutinesLaunch(private val view: MainView) : NetworkAccess {
     private var job: Job? = null
 
     override fun fetchData(searchText: String) {
-        val defer = async {
-            Network.fetchHttp(searchText)
-        }
+        job = launch {
+            val result = Network.fetchHttp(searchText)
 
-        job = launch(UI) {
-            view.updateScreen(defer.await())
+            launch(UI) {
+                view.updateScreen(result)
+            }
         }
     }
 

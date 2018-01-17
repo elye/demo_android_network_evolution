@@ -7,5 +7,6 @@
     <string name="button_search_intent_service">Intent Service Based Search</string>
     <string name="button_search_rxjava">RxJava based search</string>
     <string name="button_search_rxjava_kotlin">Rxjava Kotlin Based Search</string>
-    <string name="button_search_coroutines">Coroutines Based Search</string>
+    <string name="button_search_coroutines_async_await">Coroutines Async Await Based Search</string>
+    <string name="button_search_coroutines_launch">Coroutines Launch Based Search</string>
 </resources>
