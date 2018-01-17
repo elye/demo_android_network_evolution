@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity(), MainView {
     private val networkAccessIntentService = NetworkAccessIntentService(this)
     private val networkAccessRxJava = NetworkAccessRxJava(this)
     private val networkAccessRxJavaKotlin = NetworkAccessRxJavaKotlin(this)
+    private val networkAccessCoroutines = NetworkAccessCoroutines(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,10 @@ class MainActivity : AppCompatActivity(), MainView {
 
         btn_search_rxjava_kotlin.setOnClickListener {
             beginSearch(::beginSearchRxJavaKotlin)
+        }
+
+        btn_search_coroutines.setOnClickListener {
+            beginSearch(::beginSearchCoroutines)
         }
     }
 
@@ -79,6 +84,11 @@ class MainActivity : AppCompatActivity(), MainView {
         networkAccessRxJavaKotlin.fetchData(queryString)
     }
 
+    private fun beginSearchCoroutines(queryString: String) {
+        networkAccessCoroutines.fetchData(queryString)
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         networkAccessDirect.terminate()
@@ -87,6 +97,7 @@ class MainActivity : AppCompatActivity(), MainView {
         networkAccessIntentService.terminate()
         networkAccessRxJava.terminate()
         networkAccessRxJavaKotlin.terminate()
+        networkAccessCoroutines.terminate()
     }
 
     override fun updateScreen(result: String) {

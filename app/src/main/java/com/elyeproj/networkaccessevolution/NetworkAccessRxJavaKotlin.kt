@@ -17,8 +17,6 @@ class NetworkAccessRxJavaKotlin(private val view: MainView) : NetworkAccess {
     }
 
     override fun terminate() {
-        if (disposable != null) {
-            disposable!!.dispose()
-        }
+        disposable?.dispose()
     }
 }
