@@ -1,25 +1,21 @@
 package com.elyeproj.networkaccessevolution
 
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.*
 
 class NetworkAccessCoroutinesLaunch(private val view: MainView) : NetworkAccess {
-    private var job: Job? = null
+    private var coroutineScope = CoroutineScope(Dispatchers.IO)
 
     override fun fetchData(searchText: String) {
-        job = launch {
+        coroutineScope.launch {
             val result = Network.fetchHttp(searchText)
-
-            launch(UI) {
+            launch(Dispatchers.Main) {
                 view.updateScreen(result)
             }
         }
     }
 
     override fun terminate() {
-        job?.cancel()
+        coroutineScope.cancel()
     }
 }
 

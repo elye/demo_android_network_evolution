@@ -23,7 +23,7 @@ object Network {
                 .build()
         val request = Request.Builder().get().url(httpUrl).build()
         val response = Network.httpClient.newCall(request).execute()
-        val raw = response.body()?.string()
+        val raw = response.body?.string()
         val result = Gson().fromJson(raw, Model.Result::class.java)
         return result.query.searchinfo.totalhits.toString()
     }
