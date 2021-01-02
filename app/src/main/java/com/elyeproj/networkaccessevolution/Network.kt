@@ -17,12 +17,15 @@ object Network {
             .addQueryParameter("format", "json")
             .addQueryParameter("list", "search")
 
+    private const val SEARCH_KEY = "srsearch"
 
     @JvmStatic fun fetchHttp(queryString : String) : String {
-        val httpUrl = httpUrlBuilder.addQueryParameter("srsearch", queryString)
+        val httpUrl = httpUrlBuilder
+                .removeAllQueryParameters(SEARCH_KEY)
+                .addQueryParameter(SEARCH_KEY, queryString)
                 .build()
         val request = Request.Builder().get().url(httpUrl).build()
-        val response = Network.httpClient.newCall(request).execute()
+        val response = httpClient.newCall(request).execute()
         val raw = response.body?.string()
         val result = Gson().fromJson(raw, Model.Result::class.java)
         return result.query.searchinfo.totalhits.toString()
